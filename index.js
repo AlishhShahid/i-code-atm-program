@@ -17,10 +17,22 @@ if (pinAnswer.pin === myPin) {
             name: "operation",
             message: "Select an operation:",
             type: "list",
-            choices: ["withdraw", "check balance"],
+            choices: ["quickcash", "withdraw", "check balance"],
         },
     ]);
-    if (operationAnswer.operation === "withdraw") {
+    if (operationAnswer.operation === "quickcash") {
+        let quick = await inquirer.prompt([
+            {
+                name: "cash",
+                message: "Choose an amount",
+                type: "list",
+                choices: ["15000", "10000", "5000", "1000"],
+            },
+        ]);
+        myBalance -= quick.cash;
+        console.log("Your remaining balance is: " + myBalance);
+    }
+    else if (operationAnswer.operation === "withdraw") {
         let amountAnswer = await inquirer.prompt([
             {
                 name: "amount",
